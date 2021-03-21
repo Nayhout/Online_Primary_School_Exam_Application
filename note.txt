@@ -1,0 +1,169 @@
+DB_CONNECTION=mysql
+DB_HOST=139.162.5.17
+DB_PORT=3306
+DB_DATABASE=globeson_demo_erp
+DB_USERNAME=globeson_cust
+DB_PASSWORD=bUE0YEMHuwkNfJKHUk
+
+php artisan make:migration create_l_payment_methods_table
+
+# STEP 1. create migration
+php artisan make:migration:schema add_commission_ref --model=0
+php artisan make:migration:schema create_product_serial_dep_details_table --model=0
+php artisan make:migration:schema create_payment_schedules_table --model=0
+php artisan make:migration:schema create_pre_delivery_types_table --model=0
+php artisan make:migration:schema create_lot_sale_detail_table --model=0
+php artisan make:migration:schema create_transfer_item_details_table --model=0
+php artisan make:migration:schema create_transfer_item_detail_locations_table --model=0
+php artisan make:migration update_pk_stock_office_supply --table="users"
+php artisan make:migration update_order_type_to_journal --table="general_journals"
+php artisan make:migration add_agency_id_to_property --table="l_properties"
+php artisan make:migration add_created_sale_id_schedule --table=""
+php artisan make:migration add_academic_info --table="sh_students"
+php artisan make:migration add_unit_type_to_unit --table="units"
+php artisan make:migration add_default_customer --table="customers"
+php artisan make:migration add_note_transfer_items --table="transfer_items"
+php artisan make:migration add_ward_to_customers --table="customers"
+php artisan make:migration add_nrc_to_customers --table="customers"
+php artisan make:migration add_status_to_sale_for_lottery --table="l_pr"
+php artisan make:migration add_student_id_to_customer --table="customers"
+php artisan make:migration add_next_payment_date --table="sale_details"
+php artisan make:migration add_add_student_field_details --table="customers"
+
+
+php artisan make:migration create_areas_table
+
+php artisan make:migration create_scores_table
+
+php artisan make:migration create_withdrawal_moneys_table
+php artisan make:migration create_tests_table
+
+
+php artisan make:migration create_member_cards_table
+php artisan make:migration create_emp_request_books_table
+
+
+php artisan backpack:crud DayOff
+
+php artisan make:migration create_convert_product_items_table
+
+
+php artisan make:migration add_include_account_purchase --table="purchases"
+php artisan make:migration add_include_account_purchase --table="emp_leave_total"
+
+
+php artisan make:migration add_position_id_to_transfers --table="transfers"
+php artisan make:migration add_description_to_edc_assign_product_details--table="edc_assign_product_details"
+
+php artisan make:migration create_property_consignments_table
+php artisan make:migration create_l_property_consignment_details_table
+
+
+php artisan make:migration add_k_code_to_customer_receive_item_details --table="customer_receive_item_details"
+php artisan make:migration add_round_id_to_product_price_group --table="product_price_groups"
+
+
+php artisan make:migration add_description_to_edc_assign_product_details --table="edc_assign_product_details"
+php artisan make:migration add_winner_ticket_to_lot_results --table="lot_results"
+php artisan make:migration add_convert_to_journal --table="general_journals"
+php artisan make:migration add_open_supplier_deposit_to_g --table="general_journals"
+
+
+php artisan make:migration create_discount_matrix_details_table
+
+
+php artisan make:migration create_discount_matrices_table
+
+php artisan make:migration create_close_register_table
+php artisan make:migration create_expenses_table
+
+
+php artisan migrate
+php artisan crud:create work_order
+php artisan backpack:crud GenerateDayOff
+
+php artisan make:migration add_type_to_note_item_details --table="note_items"
+php artisan make:migration add_attribute_set_products --table="products"
+php artisan make:migration add_latlng_to_customers --table="customers"
+
+php artisan make:migration add_user_type_to_user --table="users"
+php artisan make:migration add_normal_code_to_note_details --table="note_details"
+
+# STEP 2. create a model, a request and a controller for the admin panel
+php artisan backpack:crud TransferProduct #use singular, not plural
+
+# STEP 3. add a route to routes/backpack/custom.php (under the admin prefix and auth middleware):
+php artisan backpack:base:add-custom-route "CRUD::resource('transfer-product', 'TransferProductCrudController');"
+
+# STEP 4. add a sidebar item
+php artisan backpack:base:add-sidebar-content "<li><a href='{{ backpack_url('transfer-product') }}'><i class='fa fa-tag'></i> <span>Transfer Product</span></a></li>"
+
+//===============
+Try this:
+
+git reset --hard HEAD
+git pull
+//===============
+
+ReportPurchaseController
+
+cp .env.example .env
+php artisan key:generate
+//===================
+php artisan make:import UsersImport --model=User
+
+php artisan make:export UsersExport --model=User
+
+php artisan iseed settings
+//===================
+php artisan ide-helper:generate
+permissions
+
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+
+php artisan vendor:publish
+
+php artisan ide-helper:models Post
+
+
+composer dump-autoload
+
+composer install --optimize-autoloader --no-dev
+
+php artisan config:cache
+
+
+composer dump-autoload
+
+php artisan cache:clear
+php artisan view:clear
+
+php artisan crud:create transfer_cash_to_cashier
+
+
+php artisan config:cache
+php artisan db:seed --class=SettingsTableSeeder
+
+php artisan make:notification SaleOrderAuthorizeNotification
+
+
+
+
+Ticket
+php artisan db:seed --class=BSettingTableSeeder
+php artisan db:seed --class=B_AccountTableSeeder
+php artisan db:seed --class=BSettingAccTicket_TableSeeder
+
+Gas
+php artisan db:seed --class=Gas_Setting
+
+
+Quotation
+php artisan db:seed --class=QuotationSetting
+
+
+
+

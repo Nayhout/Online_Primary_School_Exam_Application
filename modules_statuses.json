@@ -1,0 +1,10 @@
+{
+    "InfixBiometrics": false,
+    "FeesCollection": false,
+    "ResultReports": false,
+    "TemplateSettings": true,
+    "RolePermission": true,
+    "RazorPay": false,
+    "Saas": false,
+    "ParentRegistration": false
+}
